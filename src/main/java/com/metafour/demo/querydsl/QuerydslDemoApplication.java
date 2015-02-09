@@ -15,6 +15,8 @@ import com.mysema.query.sql.PostgresTemplates;
 import com.mysema.query.sql.SQLBindings;
 import com.mysema.query.sql.SQLQuery;
 import com.mysema.query.sql.SQLQueryFactory;
+import com.mysema.query.types.path.NumberPath;
+import com.mysema.query.types.path.PathBuilder;
 
 @SpringBootApplication
 public class QuerydslDemoApplication implements CommandLineRunner {
@@ -32,9 +34,17 @@ public class QuerydslDemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		SQLQueryFactory queryFactory = new SQLQueryFactory(postgresConfiguration(), dataSource);
 		
+		// Using Querydsl query type 
 		SQLQuery query = queryFactory.from(customer).where(customer.custid.gt(1));
 		SQLBindings bindings = query.getSQL(customer.all());
-		System.out.println(bindings.getSQL());
+		System.out.println("query: " + bindings.getSQL());
+		
+		// Without using Querydsl query type
+		PathBuilder<Object> customerPath = new PathBuilder<Object>(Object.class, "customer");
+	    NumberPath<Integer> custidPath = customerPath.getNumber("custid", Integer.class);
+	    SQLQuery query1 = queryFactory.from(customerPath).where(custidPath.eq(1));	    
+	    SQLBindings bindings1 = query1.getSQL(customerPath.get("*"));
+		System.out.println("query1: " + bindings1.getSQL());
 	}
     
 	@Bean
