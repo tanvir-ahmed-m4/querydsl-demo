@@ -64,10 +64,6 @@
 			<version>2.2.4</version>
 		</dependency>
 		<dependency>
-			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
-		</dependency>
-		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
@@ -96,7 +92,7 @@
 					<jdbcUrl>jdbc:postgresql://postcode.metafour.lan:5432/mpaf</jdbcUrl>
 					<jdbcUser>mpafuser</jdbcUser>
 					<jdbcPassword>mpaf123</jdbcPassword>
-					<packageName>com.metafour.demo.querydsl.qbean</packageName>
+					<packageName>com.metafour.demo.querydsl.types</packageName>
 					<targetFolder>${project.basedir}/target/generated-sources/querydsl</targetFolder>
 				</configuration>
 				<dependencies>

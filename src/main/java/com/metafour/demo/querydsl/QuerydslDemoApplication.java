@@ -1,6 +1,6 @@
 package com.metafour.demo.querydsl;
 
-import static com.metafour.demo.querydsl.qbean.QCustomer.customer;
+import static com.metafour.demo.querydsl.types.QCustomer.customer;
 
 import javax.sql.DataSource;
 
